@@ -13,6 +13,7 @@
 		FE0EF047215FA3BC006E544C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0EF046215FA3BC006E544C /* Assets.xcassets */; };
 		FE0EF04A215FA3BC006E544C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE0EF048215FA3BC006E544C /* LaunchScreen.storyboard */; };
 		FE0EF052215FA430006E544C /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0EF051215FA430006E544C /* LoaderView.swift */; };
+		FE531E0C215FEA6B00BBD31E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE531E0B215FEA6B00BBD31E /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FE0EF049215FA3BC006E544C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE0EF04B215FA3BC006E544C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE0EF051215FA430006E544C /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		FE531E0B215FEA6B00BBD31E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				FE0EF048215FA3BC006E544C /* LaunchScreen.storyboard */,
 				FE0EF04B215FA3BC006E544C /* Info.plist */,
 				FE0EF051215FA430006E544C /* LoaderView.swift */,
+				FE531E0B215FEA6B00BBD31E /* DetailViewController.swift */,
 			);
 			path = RippleLoader;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				FE0EF042215FA3BB006E544C /* ViewController.swift in Sources */,
 				FE0EF040215FA3BB006E544C /* AppDelegate.swift in Sources */,
 				FE0EF052215FA430006E544C /* LoaderView.swift in Sources */,
+				FE531E0C215FEA6B00BBD31E /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

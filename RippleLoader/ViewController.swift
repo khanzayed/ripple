@@ -19,18 +19,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func startLoaderTapped(_ sender: UIButton) {
-        
-        loaderView = LoaderView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        loaderView.center = view.center
-        view.addSubview(loaderView)
-        
-        loaderView.startAnimating()
+        showLoader(self.view)
     }
     
     @IBAction func endLoaderTapped(_ sender: UIButton) {
-        loaderView.removeFromSuperview()
-        loaderView.removeViews()
-        loaderView = nil
+        hideLoader()
     }
     
 }

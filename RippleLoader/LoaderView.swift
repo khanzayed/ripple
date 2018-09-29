@@ -9,36 +9,45 @@
 import Foundation
 import UIKit
 
-class LoaderView:UIView {
+fileprivate var loaderView : LoaderView?
+
+internal func showLoader(_ onView : UIView) {
+    if loaderView != nil {
+        hideLoader()
+    }
     
+    loaderView = LoaderView(frame: onView.frame)
+    onView.addSubview(loaderView!)
+    
+    loaderView!.startAnimating()
+}
+
+internal func hideLoader() {
+    if loaderView != nil {
+        loaderView!.removeFromSuperview()
+        loaderView!.removeViews()
+        loaderView = nil
+    }
+}
+
+class LoaderView : UIView {
+    
+    var baseView : UIView!
     var firstRippleView : UIView?
     var secondRippleView : UIView?
     var thirdRippleView : UIView?
     
-    var stopTheAnimation = false
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = UIColor(rgba: "#F1F1F1")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillEnterBackground), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidEnterBackground), name:
             UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidEnterBackground), name: UIApplication.navi, object: <#T##Any?#>)
         
         setupView()
-    }
-    
-    func setupView() {
-        firstRippleView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
-        secondRippleView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
-        thirdRippleView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
-        
-        drawRingFittingInsideView(view: firstRippleView!)
-        drawRingFittingInsideView(view: secondRippleView!)
-        drawRingFittingInsideView(view: thirdRippleView!)
-        
-        self.addSubview(firstRippleView!)
-        self.addSubview(secondRippleView!)
-        self.addSubview(thirdRippleView!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,11 +55,30 @@ class LoaderView:UIView {
     }
     
     deinit {
-        print("De- init called")
+        print("De - init called on LoaderView")
+    }
+    
+    func setupView() {
+        baseView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        baseView.center = self.center
+        
+        firstRippleView = UIView(frame: CGRect(x: 0, y: 0, width: baseView.frame.width, height: baseView.frame.width))
+        secondRippleView = UIView(frame: CGRect(x: 0, y: 0, width: baseView.frame.width, height: baseView.frame.height))
+        thirdRippleView = UIView(frame: CGRect(x: 0, y: 0, width: baseView.frame.width, height: baseView.frame.height))
+
+        drawRingFittingInsideView(view: firstRippleView!)
+        drawRingFittingInsideView(view: secondRippleView!)
+        drawRingFittingInsideView(view: thirdRippleView!)
+
+        baseView.addSubview(firstRippleView!)
+        baseView.addSubview(secondRippleView!)
+        baseView.addSubview(thirdRippleView!)
+        
+        self.addSubview(baseView)
     }
     
     private func drawRingFittingInsideView(view : UIView) {
-        let halfSize:CGFloat = min(bounds.size.width / 2, bounds.size.height / 2)
+        let halfSize:CGFloat = min(baseView.bounds.size.width / 2, baseView.bounds.size.height / 2)
         
         let circlePath = UIBezierPath(
             arcCenter: CGPoint(x:halfSize,y:halfSize),
@@ -113,9 +141,12 @@ class LoaderView:UIView {
         secondRippleView!.layer.removeAllAnimations()
         thirdRippleView!.layer.removeAllAnimations()
         
+        baseView.removeFromSuperview()
+        
         firstRippleView = nil
         secondRippleView = nil
         thirdRippleView = nil
+        baseView = nil
     }
     
     @objc func applicationDidEnterBackground() {
