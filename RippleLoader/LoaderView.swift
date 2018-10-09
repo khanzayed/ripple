@@ -45,7 +45,6 @@ class LoaderView : UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillEnterBackground), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidEnterBackground), name:
             UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidEnterBackground), name: UIApplication.navi, object: <#T##Any?#>)
         
         setupView()
     }
