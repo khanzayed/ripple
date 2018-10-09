@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         firstRippleView.center = view.center
         view.addSubview(firstRippleView)
         
-        drawRingFittingStrokeInsideView(view: firstRippleView)
+        drawRingFittingInsideView(view: firstRippleView)
     }
 
     @IBAction func startLoaderTapped(_ sender: UIButton) {
@@ -67,9 +67,9 @@ class ViewController: UIViewController {
         let circlePath = UIBezierPath(
             arcCenter: CGPoint(x:halfSize,y:halfSize),
             radius: CGFloat( halfSize - 1),
-            startAngle: CGFloat(0),
-            endAngle:CGFloat(CGFloat.pi * 2),
-            clockwise: false)
+            startAngle: -CGFloat.pi / 2,
+            endAngle: CGFloat.pi * 2,
+            clockwise: true)
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
